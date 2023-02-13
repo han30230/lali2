@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat Bot</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    #chat-container {
+      width: 500px;
+      height: 500px;
+      border: 1px solid black;
+    }
+    #chat-output {
+      height: 400px;
+      overflow: scroll;
+    }
+  </style>
+</head>
+<body>
+  <div id="chat-container">
+    <div id="chat-output"></div>
+    <input type="text" id="chat-input">
+    <button id="chat-submit">Submit</button>
+  </div>
+  <script>
+    var chatHistory = [];
+    $("#chat-submit").click(function() {
+      var message = $("#chat-input").val();
+      var otherMessage = generateOtherMessage();
+      $("#chat-output").append("<p>You: " + message + "</p>");
+      $("#chat-output").append("<p>Other: " + otherMessage + "</p>");
+      chatHistory.push("You: " + message);
+      chatHistory.push("Other: " + otherMessage);
+      $("#chat-input").val("");
+    });
+    function generateOtherMessage() {
+      var messages = [
+        "Hi there!",
+        "How can I help you?",
+        "What's up?",
+        "Nice to see you!",
+        "How are you today?",
+      ];
+      return messages[Math.floor(Math.random() * messages.length)];
+    }
+  </script>
+</body>
+</html>
